@@ -1,0 +1,33 @@
+var request = require("request");
+var mongo = require('mongodb');
+var host = 'localhost';
+var port = 27017;
+
+var db = new mongo.Db('naglowki', new mongo.Server(host, port, {}), {});
+
+
+db.open(function(err, db) {
+    
+	request("https://www.kimonolabs.com/api/axxp7v4c?apikey=6NLHkk5ziM7EUpOgeI1t0azYjqic2j73", function(err, response, body) {
+
+	var info = JSON.parse(body);
+	var a = info.results.collection1[0].property1.text;
+	var b = info.results.collection1[0].property2.text;
+	var date = new Date();
+	console.log(a);
+	console.log(b);
+
+	db.collection('naglowki_collection', function(err, collection) {
+        doc = {
+            time : date,
+	    prop1 : a,
+            prop2 : b,
+        };
+        collection.insert(doc, function() {
+	console.log("Done!");
+            db.close();
+        });
+    		});
+			});
+
+				});
