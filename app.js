@@ -43,7 +43,7 @@ app.post('/login', function(req, res) {
 	console.log(a);
  	console.log(b);
 	connectionstreamtest3(a,b);
-  res.redirect("http://localhost:5000/userlist");
+  res.redirect("https://sheltered-cliffs-6832.herokuapp.com/userlist");
 });
 
 // view engine setup - uzywam dwoch wiec jest pytanie czy to dziala
